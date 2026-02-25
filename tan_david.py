@@ -28,7 +28,7 @@ def cleanup_expired(assignments, pool):
         print(f"\n[LEASE EXPIRED] {name}'s lease ended.")
         print(f"[SYSTEM] Sending shutdown signal to {name}...")
         print(f"[SYSTEM] {name} is now disconnected.\n")
-    # IMPORTANT: do NOT sys.exit() here — one client expiring should not kill the server.
+   
 
 def show_status(assignments, pool):
     print(f"\nPool left ({len(pool)}): {sorted(pool)}")
@@ -55,7 +55,6 @@ def extend_lease(assignments):
     a = input(f"Extend lease for '{client}'? (yes/no): ").strip().lower()
 
     if a == "yes":
-        # Extend from the later of (current expiry) or (now), so you never shorten it.
         base = max(expiry, datetime.now())
         new_expiry = base + timedelta(minutes=5)
         assignments[client] = (value, new_expiry)
@@ -74,7 +73,7 @@ def dhcp():
         cleanup_expired(assignments, pool)
 
         if assignments:
-            time.sleep(1)  # slow down loop a bit
+            time.sleep(1)  
 
         cmd = input("> ").strip()
 
