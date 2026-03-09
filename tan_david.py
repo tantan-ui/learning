@@ -9,7 +9,7 @@ def ip_pool(size=6, min_val=0, max_val=20):
     numbers = set()
     while len(numbers) < size:
         numbers.add(random.randint(min_val, max_val))
-
+        
     pool = {initial_ip + str(num) for num in numbers}
     print(f"Your current IP Pool: {sorted(pool)}")
     return pool
